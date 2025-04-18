@@ -8,10 +8,19 @@
 import SwiftUI
 
 @main
-struct HW5Q5App: App {
-    var body: some Scene {
-        WindowGroup {
+struct HW5Q5App: App
+{
+    
+    var body: some Scene
+    {
+        WindowGroup
+        {
             ContentView()
         }
+        
+        
+        
     }
+    
+    
 }
