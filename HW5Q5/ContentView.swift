@@ -8,7 +8,7 @@ struct ContentView: View
     @State var dorm: Bool = false    //optional dorm
     @State var dining: Bool = false  //optional dining
     @State var parking: Bool = false //optional parking
-    @State var strTotalAmount : String = "" //total amount string
+    @State var output : String = "" //total amount string
     
     var body: some View
     {
@@ -108,11 +108,75 @@ struct ContentView: View
                 Text("Total")
                     .font(.system(size: 25))
                     .padding(30)
-                Text(strTotalAmount)
+                Text(output)
                     .frame(width: 150, height: 50)
                     .background(Color.white)
                     .multilineTextAlignment(.center)
+                    .font(.system(size: 25))
             }
+            
+            Button("Calcultae")
+            {
+                var totalAmount : Int // the total amount
+                var numCredit : Int = Int(credits)! //number of credits
+                var creditRate = 0
+                
+                
+                //determine the credit rate based on the degree status
+                if(degree == "graduate")
+                {
+                    creditRate = 800
+                }
+                else if(degree == "undergraduate")
+                {
+                    creditRate = 500
+                }
+                else if(degree == "nondegree")
+                {
+                    creditRate = 300
+                }
+                 
+                //calculate the total amount
+                totalAmount = numCredit * creditRate
+                
+                //if student outstate , tuition is twice amount
+                if(state == "outstate")
+                {
+                    totalAmount *= 2 // twice tuition
+                }
+                else if(state == "instate")
+                {
+                    totalAmount *= 1
+                }
+                
+                 
+                //if dorm is selected
+                if(dorm)
+                {
+                    totalAmount += 5000
+                }
+                
+                //if dining is selected
+                if(dining)
+                {
+                    totalAmount += 2000
+                }
+                
+                //if parking is selected
+                if(parking)
+                {
+                    totalAmount += 1000
+                }
+                
+                output = "\(totalAmount)"
+                
+                
+            }
+            .padding()
+           .font(.system(size: 30))
+           .background(Color.cyan)
+           .foregroundColor(Color.black)
+                   
             
             
             
